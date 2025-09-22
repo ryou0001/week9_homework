@@ -1,0 +1,31 @@
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"width": 800,
+"height": 450,
+"title": { "text": "Super Tuesday Cyclist Numbers" },
+"layer": [
+    {
+    "data": {
+        "url": "MB_2016_VIC.json",
+        "format": {"type": "topojson", "feature": "MB_2016_VIC"}
+    },
+    "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+    "data": {
+    "url": "annual-bike-counts-super-tuesday.csv"
+    },
+    "mark": {"type": "circle", "tooltip": {"content": "data"}},
+    "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "size": {
+            "field": "total",
+            "type": "quantitative",
+            "title": "Total cyclists",
+            "scale": {"domain": [0, 500]}
+        }
+    }
+    }
+]
+}
