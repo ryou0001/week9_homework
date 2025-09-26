@@ -1,0 +1,84 @@
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"width": 630,
+"height": 600,
+"title": { "text": "Super Tuesday Cyclist Numbers in the City of Melbourne 2017" },
+"projection": {"type": "mercator"},
+"layer": [
+    {
+    "data": {
+        "url": "MB_2016_VIC.json",
+        "format": {"type": "topojson", "feature": "MB_2016_VIC"}
+    },
+    "mark": {"type": "geoshape", "fill": "lightgrey", "stroke": "white"}
+    },
+    {
+    "data": {
+        "url": "HY_WATER_AREA.json",
+        "format": {"type": "topojson", "feature": "HY_WATER_AREA_POLYGON"}
+    },
+    "mark": {
+        "type": "geoshape", 
+        "opacity": "1", 
+        "fill": "lightblue",
+        "stroke": "lightblue"}
+    },
+    {
+    "data": {
+        "url": "HY_WATER_AREA.json",
+        "format": {"type": "topojson", "feature": "HY_WATER_AREA_FUZZY"}
+    },
+    "mark": {
+        "type": "geoshape", 
+        "opacity": "1", 
+        "fill": "lightblue",
+        "stroke": "lightblue"}
+    },
+    {
+    "data": {
+        "url": "municipal-boundary.json",
+        "format": {"type": "topojson", "feature": "municipal-boundary"}
+    },
+    "mark": {
+        "type": "geoshape", 
+        "opacity": "0.15", 
+        "fill": "black"}
+    },
+        {
+    "data": {
+        "url": "municipal-boundary.json",
+        "format": {"type": "topojson", "feature": "municipal-boundary"}
+    },
+    "mark": {
+        "type": "geoshape", 
+        "opacity": "1", 
+        "fill": null,
+        "stroke": "orange", 
+        "strokeWidth": 2}
+    },
+    {
+    "data": {
+    "url": "annual-bike-counts-super-tuesday.csv"
+    },
+    "mark": {"type": "circle", "opacity": "0.8", "stroke":"white"},
+    "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "color": {
+            "field": "total", 
+            "type": "quantitative", 
+            "scale": {"type": "threshold", "domain": [500,1000, 1500], "scheme": "oranges"}},
+        "size": {
+            "field": "total",
+            "type": "quantitative",
+            "title": "Total cyclists",
+            "scale": {"type": "threshold", "domain": [500,1000, 1500]}
+        },
+        "tooltip": [
+            {"field": "description", "type": "nominal", "title": "Location"}, 
+            {"field": "total", "type": "quantitative", "title": "Total cyclists"}
+        ]
+    }
+    }
+]
+}
